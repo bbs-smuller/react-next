@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import Markdown from 'react-markdown'
 import fetch from 'isomorphic-unfetch'
 import Layout from '../components/AppLayout'
 
 const Index = (props) => (
 	<Layout>
-		<h1>Batman TV Shows</h1>
+		<h1>Batman TV Shows!</h1>
 		<ul>
 			{props.shows.map(({show}) => (
 				<li key={show.id}>
@@ -14,6 +15,17 @@ const Index = (props) => (
 				</li>
 			))}
 		</ul>
+		<div className="markdown">
+			<Markdown source={`
+This is our blog post.
+Yes. We can have a [link](/link).
+And we can have a title as well.
+
+### This is a title
+
+And here's the content.
+			`}/>
+		</div>
 		<style jsx>{`
 			h1, a {
 				font-family: 'Arial';
@@ -31,6 +43,11 @@ const Index = (props) => (
 			}
 			a:hover {
 				opacity: 0.6;
+			}
+		`}</style>
+		<style jsx global>{`
+			.markdown h3 {
+				text-transform: uppercase;
 			}
 		`}</style>
 	</Layout>
