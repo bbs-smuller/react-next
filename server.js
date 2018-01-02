@@ -1,8 +1,8 @@
 const next = require('next')
 const express = require('express')
 
-const isDev = process.env.NODE_ENV !== 'production'
-const app = next({isDev})
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({dev})
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
@@ -10,7 +10,7 @@ app.prepare().then(() => {
 
 	server.get('/p/:id', (req, res) => {
 		const actualPage = '/post'
-		const queryParams = { title: req.params.id }
+		const queryParams = { id: req.params.id }
 		app.render(req, res, actualPage, queryParams)
 	})
 
